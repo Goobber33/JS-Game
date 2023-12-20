@@ -80,5 +80,21 @@ export class ClimbingEnemy extends Enemy {
         this.image = document.getElementById('enemy_spider_big');
         this.speedX = 0;
         this.speedY = Math.random() > 0.5 ? 1 : -1;
+        this.maxFrame = 5;
     }
+
+    update(deltaTime) {
+        super.update(deltaTime);
+        if (this.y > this.game.height - this.height - this.game.groundMargin) this.speedY *= -1;
+        if (this.y < - this.height) this.markedForDeletion = true;
+    }
+
+    draw(context) {
+        super.draw(context);
+        context.beginPath();
+        context.moveTo(this.x + this.width/2, 0);
+        context.lineTo(this.x + this.width/2, this.y + 50)
+        context.stroke();
+    }
+
 }
