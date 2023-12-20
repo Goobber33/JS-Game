@@ -6,7 +6,7 @@ const states = {
 }
 
 class State {
-    constructor(state){
+    constructor(state) {
         this.state = state;
     }
 }
@@ -17,7 +17,9 @@ export class Sitting extends State {
         this.player = player;
     }
 
-    enter(){
+    enter() {
+        this.player.frameX = 0;
+        this.player.maxFrame = 4;
         this.player.frameY = 5;
     }
 
@@ -34,7 +36,9 @@ export class Running extends State {
         this.player = player;
     }
 
-    enter(){
+    enter() {
+        this.player.frameX = 0;
+        this.player.maxFrame = 8;
         this.player.frameY = 3;
     }
 
@@ -53,8 +57,10 @@ export class Jumping extends State {
         this.player = player;
     }
 
-    enter(){
-        if (this.player.onGround()) this.player.vy -=27;
+    enter() {
+        if (this.player.onGround()) this.player.vy -= 27;
+        this.player.frameX = 0;
+        this.player.maxFrame = 6;
         this.player.frameY = 1;
     }
 
@@ -71,7 +77,9 @@ export class Falling extends State {
         this.player = player;
     }
 
-    enter(){
+    enter() {
+        this.player.frameX = 0;
+        this.player.maxFrame = 6;
         this.player.frameY = 2;
     }
 
